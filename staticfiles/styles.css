@@ -1,0 +1,43 @@
+body {
+    padding:2% 5% 2% 5%;
+    background-color: aliceblue;
+}
+
+h1 {
+    font-size: 36pt;
+    font-family: merriweather;
+    color: #000042;
+}
+
+p {
+    font-family: helvetica;
+    font-size: 12pt;
+}
+
+#image-list {
+    list-style: none;
+}
+
+img {
+    max-height: 500px;
+}
+
+#nav {
+    display: inline-block;
+    padding: 10px 5px 10px 5px;
+    margin: 10px 5px 10px 5px;
+    font-size: 18pt;
+}
+
+a {
+    font-family: helvetica;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: grey;
+}
