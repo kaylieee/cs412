@@ -1,0 +1,17 @@
+{% load static %}
+<html>
+    <head>
+        <title>Quote App</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <nav>
+            <li id="nav"><a href="{% url 'home' %}">Home</a></li>
+            <li id="nav"><a href="{% url 'quote' %}">Quote</a></li>
+            <li id="nav"><a href="{% url 'show_all' %}">Show All</a></li>
+            <li id="nav"><a href="{% url 'about' %}">About</a></li>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
