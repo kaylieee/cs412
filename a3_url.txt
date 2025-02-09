@@ -1,1 +1,1 @@
-https://cs-webapps.bu.edu/kleung28/cs412/quotes/
+http://cs-webapps.bu.edu/kleung28/quotes/
