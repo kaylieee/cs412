@@ -41,3 +41,18 @@ a:visited {
 a:hover {
     color: grey;
 }
+
+td {
+    padding:15px 10px 15px 10px;
+    text-align: center;
+}
+
+textarea{
+    min-width: 700px;
+    min-height: 100px;
+    margin: 10px 10px 10px 10px;
+}
+
+input{
+    margin: 10px 10px 10px 10px;
+}

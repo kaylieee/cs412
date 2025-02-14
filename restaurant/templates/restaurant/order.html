@@ -1,0 +1,62 @@
+{% extends 'restaurant/base.html' %}
+    {% block content %}
+    <h1>Place an Order</h1>
+    <form action="{% url 'confirmation' %}" method="POST" >
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Menu Item</th>
+                <th>Price</th>
+                <th>Add to Order</th>
+                <th>Extras</th>
+            </tr>
+            <tr>
+                <td><h4>Pepperoni Pizza</h4>
+                    Freshly baked cheesy pepperoni pizza
+                </td>
+                <td>$10</td>
+                <td><input type="checkbox" name="order" value="pizza"></td>
+                <td>Add Extra Cheese: <input type="checkbox" name="extra" value="Extra Cheese"><br>
+                    Add Extra Pepperoni: <input type="checkbox" name="extra" value="Extra Pepperoni">
+                </td>
+            </tr>
+            <tr>
+                <td><h4>Italian Wedding Soup</h4>
+                    With housemade meatballs, spinach, parmesan, and orzo
+                </td>
+                <td>$5</td>
+                <td><input type="checkbox" name="order" value="soup"></td>
+            </tr>
+            <tr>
+                <td><h4>Chicken Alfredo</h4>
+                    <p>Signature alfredo sauce with fresh pasta</p>
+                </td>
+                <td>$15</td>
+                <td><input type="checkbox" name="order" value="alfredo"></td>
+            </tr>
+            <tr>
+                <td><h4>Garlic Bread</h4>
+                    Buttery garlic bread made fresh daily
+                </td>
+                <td>$15</td>
+                <td><input type="checkbox" name="order" value="bread"></td>
+            </tr>
+            <tr>
+                <td><h3>Daily Special:</h3></td>
+            </tr>
+            <tr>
+                <td><h4>{{ special }}</h4>
+                    {{ description }}
+                </td>
+                <td>$15</td>
+                <td><input type="checkbox" name="order" value="{{ special }}"></td>
+            </tr>
+        </table>
+        <p>Special Instructions:</p>
+        <textarea name="instr"> </textarea>
+        <br>Name: <input type="text" name="name">
+        <br>Phone: <input type="text" name="email">
+        <br>Email: <input type="text" name="phone">
+        <br><input type="submit">
+    </form>
+    {% endblock %}

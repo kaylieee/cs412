@@ -1,0 +1,15 @@
+{% load static %}
+<html>
+    <head>
+        <title>Restaurant App</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <nav>
+            <li id="nav"><a href="{% url 'main' %}">Main</a></li>
+            <li id="nav"><a href="{% url 'order' %}">Order</a></li>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
