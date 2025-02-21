@@ -1,0 +1,9 @@
+<!-- blog/show_all_profiles.html display a single profile on this webpage
+     Kaylie Leung kleung28@bu.edu-->
+
+{% extends 'mini_fb/base.html' %}
+{% block content %}
+<h1>{{profile.first_name}} {{profile.last_name}}</h1>
+<h2>{{profile.city}} | {{profile.email_address}}</h2>
+<img src={{profile.profile_image_url}} id="profile_image_full">
+{% endblock %}

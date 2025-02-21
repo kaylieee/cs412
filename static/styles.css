@@ -32,6 +32,7 @@ img {
 a {
     font-family: helvetica;
     text-decoration: none;
+    color: black;
 }
 
 a:visited {
@@ -42,7 +43,7 @@ a:hover {
     color: grey;
 }
 
-td {
+td, th{
     padding:15px 10px 15px 10px;
     text-align: center;
 }
@@ -55,4 +56,8 @@ textarea{
 
 input{
     margin: 10px 10px 10px 10px;
+}
+
+#profile_image{
+    max-width: 200px;
 }
