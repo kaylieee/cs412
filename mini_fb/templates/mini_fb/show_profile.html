@@ -1,4 +1,4 @@
-<!-- blog/show_all_profiles.html display a single profile on this webpage
+<!-- mini_fb/show_all_profiles.html display a single profile on this webpage
      Kaylie Leung kleung28@bu.edu-->
 
 {% extends 'mini_fb/base.html' %}
@@ -6,4 +6,9 @@
 <h1>{{profile.first_name}} {{profile.last_name}}</h1>
 <h2>{{profile.city}} | {{profile.email_address}}</h2>
 <img src={{profile.profile_image_url}} id="profile_image_full">
+<h2>Status Messages</h2>
+{% for status_message in profile.get_status_messages %}
+<p>{{status_message.time_stamp}}: {{status_message.message}}</p>
+{% endfor %}
+<h3><a href="{% url 'create_status_message' profile.pk %}">Create a status message</a></h3>
 {% endblock %}
