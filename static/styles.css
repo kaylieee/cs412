@@ -61,3 +61,17 @@ input{
 #profile_image{
     max-width: 200px;
 }
+
+#status_message_image{
+    max-height: 100px
+}
+
+input[type=submit] {
+    background: none;
+    font-family: helvetica;
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    border: 0;
+    font-weight: 600;
+}

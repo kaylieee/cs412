@@ -1,0 +1,18 @@
+<!-- mini_fb/update_profile_form.html display a form to update a profile on this webpage
+     Kaylie Leung kleung28@bu.edu-->
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+<h2>Update a Profile</h2>
+
+<form method = 'POST' enctype="multipart/form-data">
+{% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+
+    <input type='submit' name = 'update_profile' value= 'Update Profile'>
+</form>
+<h3><a href="{% url 'show_profile' profile.pk %}">Cancel</a></h3>
+
+{% endblock %}

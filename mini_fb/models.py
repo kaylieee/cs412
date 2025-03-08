@@ -38,7 +38,7 @@ class StatusMessage(models.Model):
     '''
 
     #define attributes
-    time_stamp = models.DateTimeField(blank=False)
+    time_stamp = models.DateTimeField(auto_now=True)
     message = models.TextField(blank=False)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
@@ -47,3 +47,26 @@ class StatusMessage(models.Model):
          Return a string rep of this model instance
          '''
          return f'{self.time_stamp}: {self.message}'
+    
+    def get_images(self):
+        '''Return all of the images from this status message.'''
+
+        status_images = StatusImage.objects.filter(status_message=self)
+        images = [status_image.image for status_image in status_images]
+        return images
+
+class Image(models.Model):
+    '''Encapsulate the data of an Image'''
+
+    #define attributes
+    image_file = models.ImageField(blank=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    time_stamp = models.DateTimeField(auto_now=True)
+    caption = models.TextField(null=True, blank=True)
+
+class StatusImage(models.Model):
+    '''Encapsulate the data of a Status Image'''
+
+    #define attributes
+    status_message = models.ForeignKey(StatusMessage, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
