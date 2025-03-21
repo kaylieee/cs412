@@ -1,0 +1,18 @@
+<!-- mini_fb/show_all_profiles.html display friend suggestions on this webpage
+     Kaylie Leung kleung28@bu.edu-->
+
+{% extends 'mini_fb/base.html' %}
+{% block content %}
+{% for status_message in profile.get_news_feed%}
+    <table>
+        <td><img src="{{status_message.profile.profile_image_url}}" id="friend_profile_images"></td>
+        <td>
+            <strong>{{status_message.profile.first_name}} {{status_message.profile.last_name}}</strong>&emsp;{{status_message.time_stamp}}:<br><br>
+            {{status_message.message}}<br>
+            {% for image in status_message.get_images %}
+                <img src="{{image.image_file.url}}" id="status_message_image"><br>
+            {% endfor %}
+        </td>
+    </table>
+{% endfor %}
+{% endblock %}

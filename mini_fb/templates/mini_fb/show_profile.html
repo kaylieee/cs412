@@ -7,7 +7,19 @@
 <h2>{{profile.city}} | {{profile.email_address}}</h2>
 <img src={{profile.profile_image_url}} id="profile_image_full">
 <h3><a href="{% url 'update_profile' profile.pk %}">Update Profile</a></h3>
+<h2>{{profile.first_name}}'s Friends</h2>
+<table>
+    <tr>
+        {% for friend in profile.get_friends %}
+        <td>{{friend.first_name}} {{friend.last_name}}<br>
+            <img src={{friend.profile_image_url}} id="friend_profile_images">
+        </td>
+        {% endfor %}
+    </tr>
+</table>
+<h3><a href="{% url 'friend_suggestions' profile.pk %}">See Friend Suggestions</a></h3>
 <h2>Status Messages</h2>
+<h3><a href="{% url 'news_feed' profile.pk %}">News Feed</a></h3>
 {% for status_message in profile.get_status_messages %}
 <p>{{status_message.time_stamp}}: {{status_message.message}}</p>
     {% for image in status_message.get_images %}

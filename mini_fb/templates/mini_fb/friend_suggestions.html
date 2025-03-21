@@ -1,0 +1,17 @@
+<!-- mini_fb/show_all_profiles.html display friend suggestions on this webpage
+     Kaylie Leung kleung28@bu.edu-->
+
+{% extends 'mini_fb/base.html' %}
+{% block content %}
+<h1>People {{profile.first_name}} {{profile.last_name}} may know:</h1>
+<table>
+    <tr>
+        {% for friend in profile.get_friend_suggestions %}
+        <td>{{friend.first_name}} {{friend.last_name}}<br><br>
+            <img src={{friend.profile_image_url}} id="friend_profile_images"><br><br>
+            <a href="{% url 'add_friend' profile.pk friend.pk%}">Add Friend</a>
+        </td>
+        {% endfor %}
+    </tr>
+</table>
+{% endblock %}

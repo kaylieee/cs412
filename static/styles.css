@@ -75,3 +75,7 @@ input[type=submit] {
     border: 0;
     font-weight: 600;
 }
+
+#friend_profile_images{
+    max-width: 100px;
+}

@@ -1,8 +1,8 @@
 #Kaylie Leung kleung28@bu.edu
 #Define app views
 
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from .models import Profile, Image, StatusMessage, StatusImage
 from .forms import CreateProfileForm, CreateStatusMessageForm, UpdateProfileForm, UpdateStatusMessageForm
 from django.urls import reverse
@@ -151,3 +151,38 @@ class UpdateStatusMessageView(UpdateView):
         
         # reverse to show the article page
         return reverse('show_profile', kwargs={'pk':profile.pk})
+
+class AddFriendView(View):
+    '''
+    Define a view class to add a friend
+    '''
+
+    def dispatch(self, request, *args, **kwargs):
+        profile1 = Profile.objects.filter(pk=self.kwargs.get('pk')).first()
+        profile2 = Profile.objects.filter(pk=self.kwargs.get('other_pk')).first()
+        profile1.add_friend(profile2)
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('show_profile', kwargs={'pk':self.kwargs['pk']})
+
+class ShowFriendSuggestionsView(DetailView):
+    '''
+    Define a view class to show all friend suggestions
+    '''
+
+    model = Profile
+    template_name = "mini_fb/friend_suggestions.html"
+    context_object_name = "profile"
+
+class ShowNewsFeedView(DetailView):
+    '''
+    Define a view class to show news feed
+    '''
+
+    model = Profile
+    template_name = "mini_fb/news_feed.html"
+    context_object_name = "profile"
