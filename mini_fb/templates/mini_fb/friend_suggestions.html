@@ -9,7 +9,7 @@
         {% for friend in profile.get_friend_suggestions %}
         <td>{{friend.first_name}} {{friend.last_name}}<br><br>
             <img src={{friend.profile_image_url}} id="friend_profile_images"><br><br>
-            <a href="{% url 'add_friend' profile.pk friend.pk%}">Add Friend</a>
+            <a href="{% url 'add_friend' friend.pk%}">Add Friend</a>
         </td>
         {% endfor %}
     </tr>

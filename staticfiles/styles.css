@@ -76,6 +76,27 @@ input[type=submit] {
     font-weight: 600;
 }
 
+button[type=submit] {
+    background: none;
+    font-family: helvetica;
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    border: 0;
+    font-size: 18pt;
+    cursor: pointer;
+}
+
+button[type=submit]:hover {
+    color: grey;
+    cursor: pointer;
+}
+
 #friend_profile_images{
     max-width: 100px;
+}
+
+ul{
+    list-style-type: none;
+    padding-left: 0;
 }

@@ -1,4 +1,4 @@
-<!-- mini_fb/show_all_profiles.html display a single profile on this webpage
+<!-- mini_fb/show_profile.html display a single profile on this webpage
      Kaylie Leung kleung28@bu.edu-->
 
 {% extends 'mini_fb/base.html' %}
@@ -6,7 +6,11 @@
 <h1>{{profile.first_name}} {{profile.last_name}}</h1>
 <h2>{{profile.city}} | {{profile.email_address}}</h2>
 <img src={{profile.profile_image_url}} id="profile_image_full">
-<h3><a href="{% url 'update_profile' profile.pk %}">Update Profile</a></h3>
+
+{% if request.user.is_authenticated and user == profile.user%}
+<h3><a href="{% url 'update_profile'%}">Update Profile</a></h3>
+{% endif %}
+
 <h2>{{profile.first_name}}'s Friends</h2>
 <table>
     <tr>
@@ -17,16 +21,26 @@
         {% endfor %}
     </tr>
 </table>
-<h3><a href="{% url 'friend_suggestions' profile.pk %}">See Friend Suggestions</a></h3>
+
+{% if request.user.is_authenticated and user == profile.user%}
+<h3><a href="{% url 'friend_suggestions'%}">See Friend Suggestions</a></h3>
+{% endif %}
+
 <h2>Status Messages</h2>
-<h3><a href="{% url 'news_feed' profile.pk %}">News Feed</a></h3>
+{% if request.user.is_authenticated and user == profile.user%}
+<h3><a href="{% url 'news_feed'%}">News Feed</a></h3>
+{% endif %}
 {% for status_message in profile.get_status_messages %}
 <p>{{status_message.time_stamp}}: {{status_message.message}}</p>
     {% for image in status_message.get_images %}
     <img src='{{image.image_file.url}}' alt='{{image.image_file.url}}' id="status_message_image"><br>
     {% endfor %}
+    {% if request.user.is_authenticated and user == profile.user%}
     <a href="{% url 'update_status' status_message.pk %}">Update</a>
     <a href="{% url 'delete_status' status_message.pk %}">Delete</a>
+    {% endif %}
 {% endfor %}
-<h3><a href="{% url 'create_status_message' profile.pk %}">Create a status message</a></h3>
+{% if request.user.is_authenticated and user == profile.user%}
+<h3><a href="{% url 'create_status_message'%}">Create a status message</a></h3>
+{% endif %}
 {% endblock %}

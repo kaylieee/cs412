@@ -1,0 +1,18 @@
+<!-- mini_fb/login.html login template page
+     Kaylie Leung kleung28@bu.edu-->
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+
+<h1>Login</h1>
+<form method="post" action="{% url 'login' %}" >
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Login">
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{request.GET.next}}">
+    {% else %}
+    <input type="hidden" name="next" value="{% url 'my_profile' %}">
+    {% endif %}
+</form>
+{% endblock %}
