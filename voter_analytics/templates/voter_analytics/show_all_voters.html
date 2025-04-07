@@ -1,0 +1,60 @@
+<!-- voter_analytics/show_all_voters.html
+     Kaylie Leung kleung28@bu.edu -->
+{% extends 'voter_analytics/base.html' %}
+
+{% block content %}
+<div class="row">
+    {% include "voter_analytics/search.html" %}    
+</div>
+<div class="container">
+    <h1>Showing all Voters</h1>
+
+    <!-- navigation links -->
+    <div style="display: flex;">
+        {% if is_paginated %}
+        <ul style="display: flex; list-style: none; gap: 10px;">
+            {% if page_obj.has_previous %}
+                <li>
+                    <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                
+                </li>
+            {% endif %}
+                <li style="font-family: Helvetica">
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                </li>
+            {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+    
+	<!-- table -->
+    <div class="row">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Date of Birth</th>
+                <th>Party Affiliation</th>
+                <th>Voter Score</th>
+            </tr>
+    
+            {% for v in voters %}
+            <tr>
+                <td>{{v.first_name}} {{v.last_name}}<br><a href="{% url 'voter' v.pk %}"> See Full Profile</a>
+                </td>
+                <td>{{v.street_number}} {{v.street_name}} {{v.apartment_number}} {{v.zip_code}}</td>
+                <td>{{v.dob}}</td>
+                <td>{{v.party}}</td>     
+                <td>{{v.voter_score}}</td>
+             
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>    
+{% endblock %}

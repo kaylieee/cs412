@@ -1,0 +1,21 @@
+<!-- voter_analytics/base.html base template page
+     Kaylie Leung kleung28@bu.edu-->
+     {% load static %}
+     <html>
+         <head>
+             <title>Voter Analytics App</title>
+             <link rel="stylesheet" href="{% static 'styles.css' %}">
+         </head>
+         <body>
+             <nav>
+                 <ul>
+                     <li id="nav"><a href="{% url 'voters' %}">All Voters</a></li>
+                 </ul>
+             </nav>
+             {% block content %}
+             {% endblock %}
+         </body>
+         <footer>
+             <p>Voter Analytics. Built by Kaylie.</p>
+         </footer>
+     </html>

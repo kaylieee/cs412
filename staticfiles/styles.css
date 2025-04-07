@@ -46,6 +46,7 @@ a:hover {
 td, th{
     padding:15px 10px 15px 10px;
     text-align: center;
+    font-family: helvetica;
 }
 
 textarea{
