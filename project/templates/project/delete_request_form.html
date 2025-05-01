@@ -1,0 +1,19 @@
+<!-- project/delete_request_form.html display a form to delete a request message on this webpage
+    Kaylie Leung kleung28@bu.edu-->
+{% extends 'project/base.html' %}
+{% block content %}
+<div class="delete-request">
+<h1>Are you sure you want to unsend your request?</h1>
+    <div class="request">Request to&nbsp;<b>{{request.student1.first_name}} {{request.student1.last_name}}</b>&nbsp;to trade&nbsp;<b>{{request.section2.course.college}}{{request.section2.course.department}} {{request.section2.course.course_number}} - {{request.section2.section_number}}</b>&nbsp;for&nbsp;<b> {{request.section1.course.college}}{{request.section1.course.department}} {{request.section1.course.course_number}} - {{request.section1.section_number}}</b></div>
+    <div style="display: flex; gap: 10px; margin: 10px;">
+        <form action="{% url 'my_profile' %}" method='GET' >
+            {% csrf_token %}
+            <input type='submit' value="Cancel">
+        </form>
+        <form method='POST'>
+            {% csrf_token %}
+            <input type='submit' value="Unsend">
+        </form>
+    </div>
+</div>
+{% endblock %}

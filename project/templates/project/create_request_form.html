@@ -1,0 +1,68 @@
+<!-- project/create_request_form.html form for creating requests
+     Kaylie Leung kleung28@bu.edu-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+<h1>Send a new swap request</h1>
+
+<!-- display the HTML form -->
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="create-request-top">
+        <div>
+            <label for="section1">{{student1}}'s Course to Swap:&nbsp;</label>
+            <select name="section1" id="section1" required>
+                <option value="" disabled selected></option>
+                {% for interest in student1Interests %}
+                    {% if interest.interest_type == "E" %}
+                    <option value="{{interest.section.pk}}">
+                        {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
+                    </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="section2">My Course to Swap:&nbsp;</label>
+            <select name="section2" id="section2" required>
+                <option value="" disabled selected></option>
+                {% for interest in student2Interests %}
+                    {% if interest.interest_type == "E" %}
+                    <option value="{{interest.section.pk}}">
+                        {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
+                    </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+   <div class="lists">
+        <div class="wish-list">
+            <span style="margin: 10px; font-weight: 600;">{{student1}}'s Wishlist</span>
+            {% for interest in student1Interests %}
+                {% if interest.interest_type == "W" %}
+                <div class="list-item">
+                    {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="wish-list">
+            <span style="margin: 10px; font-weight: 600;">My Wishlist</span>
+            {% for interest in student2Interests %}
+                {% if interest.interest_type == "W" %}
+                <div class="list-item">
+                    {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+   </div>
+   <div class="create-request-bottom">
+        <a href="{% url 'my_profile' %}">Cancel</a>
+        <input type="submit" name="submit" value="Send Request">
+   </div>
+</form>
+
+{% endblock %}

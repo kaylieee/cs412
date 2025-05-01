@@ -1,103 +1,316 @@
 body {
-    padding:2% 5% 2% 5%;
-    background-color: aliceblue;
+    font-family: 'Helvetica';
+    margin: 0;
+    padding: 2%;
+    font-size: 16px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+nav ul li{
+    list-style-type: none;
+    margin: 10px;
+    padding: 0px;
+    display: flex;
+}
+
+nav ul li a, nav ul li form button{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+    background-color: inherit;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
 }
 
 h1 {
-    font-size: 36pt;
-    font-family: merriweather;
-    color: #000042;
+    color: #143359;
 }
 
-p {
-    font-family: helvetica;
-    font-size: 12pt;
+.interests {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 0 20px;
 }
 
-#image-list {
-    list-style: none;
+.interest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4f6f8;
+    padding: 20px 15px;
+    margin: 5px 0 0 5px;
+    font-size: 18px;
 }
 
-img {
-    max-height: 500px;
+.interest-top{
+    width: 100%;
+    color: #143359;
+    font-weight: bold;
 }
 
-#nav {
-    display: inline-block;
-    padding: 10px 5px 10px 5px;
-    margin: 10px 5px 10px 5px;
-    font-size: 18pt;
+.interest-bottom{
+    display: flex;
+    width: 100%;
 }
 
-a {
-    font-family: helvetica;
+.interest-bottom-left {
+    width: 70%;
+    padding-left: 2%;
+}
+
+.interest-bottom-right {
+    width: 30%;
+    text-align: right;
+}
+
+.interest-bottom-right a {
+    padding: 10px 20px;
     text-decoration: none;
-    color: black;
-}
-
-a:visited {
-    color: black;
-}
-
-a:hover {
-    color: grey;
-}
-
-td, th{
-    padding:15px 10px 15px 10px;
-    text-align: center;
-    font-family: helvetica;
-}
-
-textarea{
-    min-width: 700px;
-    min-height: 100px;
-    margin: 10px 10px 10px 10px;
-}
-
-input{
-    margin: 10px 10px 10px 10px;
-}
-
-#profile_image{
-    max-width: 200px;
-}
-
-#status_message_image{
-    max-height: 100px
-}
-
-input[type=submit] {
-    background: none;
-    font-family: helvetica;
-    text-decoration: none;
-    color: black;
-    font-size: large;
-    border: 0;
+    border-radius: 50px;
     font-weight: 600;
+    background-color:#143359;
+    color: white;
 }
 
-button[type=submit] {
-    background: none;
-    font-family: helvetica;
-    text-decoration: none;
+.interest-bottom-right a:hover {
+    background-color: #a1b8d4;
+}
+
+.lists {
+    display: flex;
+    min-height: 450px;
+    padding: 5px 10px;
+    gap: 10px;
+    font-size: 20px;
+    color: #143359;
+}
+
+.wish-list, .enrolled-list{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f6f8;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.list-item {
+    align-items: center;
+    background: white;
+    padding: 20px 15px;
+    margin-top: 5px;
+    font-size: 18px;
+    border: 2px solid #dce0e6;
+    border-radius: 6px;
     color: black;
-    font-size: large;
-    border: 0;
-    font-size: 18pt;
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-info {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 15px;
+    color: #143359;
+}
+
+.list-add {
+    align-self: flex-end;
+    margin: 15px 0px;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    background-color:#143359;
+    color: white;
+}
+
+.list-add:hover {
+    background-color: #a1b8d4;
+}
+
+.requests {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    background-color: #f4f6f8;
+    border-radius: 6px;
+    font-size: 20px;
+    color: #143359;
+}
+
+.request {
+    display: flex;
+    padding: 15px 10px;
+    margin-top: 5px;
+    background: white;
+    border: 2px solid #dce0e6;
+    border-radius: 6px;
+    font-size: 18px;
+    color: black;
+}
+.request-left {
+    width: 85%;
+}
+.request-right {
+    width: 15%;
+    text-align: right;
+    text-justify: center;
+}
+.request-right a{
+    align-content: center;
+    margin: 15px 0px;
+    color: black;
+    padding: 7px 15px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    background-color:#143359;
+    color: white;
+}
+
+.request-right a:hover{
+    background-color: #a1b8d4;
+}
+
+.request-left a{
+    color:black;
+}
+
+input[type="submit"], .swap, form a{
+    align-self: flex-end;
+    margin: 15px 0px;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    background-color:#143359;
+    color: white;
+    font-size: 18px;
+    border: none;
     cursor: pointer;
 }
 
-button[type=submit]:hover {
-    color: grey;
-    cursor: pointer;
+input[type="submit"]:hover, .swap:hover, form a:hover {
+    background-color: #a1b8d4;
 }
 
-#friend_profile_images{
-    max-width: 100px;
+form {
+    font-size: 18px;
 }
 
-ul{
-    list-style-type: none;
-    padding-left: 0;
+.create-request-top {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+}
+
+.create-request-top div {
+    width: 50%;
+    text-align: center;
+}
+
+select {
+    height: 30px;
+    width: 200px;
+    border: 2px solid #dce0e6;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.create-request-bottom {
+    text-align: right;
+    padding: 0px 10px;
+}
+
+input[type="text"], input[type="password"]{
+    height: 30px;
+    width: 200px;
+    font-family: helvetica;
+    padding: 5px;
+    border: 2px solid #dce0e6;
+    border-radius: 6px;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.search-bar input[type="text"] {
+    width: 150px;
+}
+
+.search-bar {
+    font-size: 20px;
+}
+
+.search-bar form table tr td {
+    padding: 0px 5px;
+    font-size: 18px;
+}
+
+.section {
+    display: flex;
+    width: 100%;
+    background-color: #f4f6f8;
+    border-radius: 6px;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.section-left {
+    text-justify: center;
+    width: 90%;
+    height: 100%;
+    padding: 10px;
+}
+
+.section-right {
+    width: 10%;
+    text-align: right;
+}
+
+.section-right form input[type="submit"]{
+    margin: 10px;
+    font-size: 16px;
+}
+
+.section-right form {
+    margin: 0;
+}
+
+.delete-form {
+    margin: 0;
+    justify-self: right;
+}
+
+.delete-form input {
+    margin: 0;
+    font-size: 24;
+    color: #143359;
+    background-color: white;
+    padding: 0;
+    border-radius: 0;
+    font-weight: 900;
+}
+
+.delete-form input:hover {
+    color: #a1b8d4;
+    background-color: white;
 }

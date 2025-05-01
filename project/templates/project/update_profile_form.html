@@ -1,0 +1,18 @@
+<!-- project/update_profile_form.html display a form to update a student profile on this webpage
+     Kaylie Leung kleung28@bu.edu-->
+{% extends 'project/base.html' %}
+
+{% block content %}
+<h2>Update My Profile</h2>
+
+<form method = 'POST' enctype="multipart/form-data">
+{% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <div stile="display: flex;">
+    <a href="{% url 'my_profile' %}">Cancel</a>
+    <input type='submit' name = 'update_profile' value= 'Update'>
+    </div>
+</form>    
+{% endblock %}

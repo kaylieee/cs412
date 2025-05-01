@@ -1,0 +1,78 @@
+<!-- project/show_profile.html display a student profile on this webpage
+     Kaylie Leung kleung28@bu.edu-->
+{% extends 'project/base.html' %}
+{% block content %}
+<div class="student-info">
+    {{student.first_name}} {{student.last_name}}
+</div>
+{% if request.user.is_authenticated and user == student.user%}
+<div style="margin: 20px 10px">
+    <a class="swap" href="{% url 'update_student' %}">Update Profile</a>
+</div>
+<div class="requests">
+    <h3>Active Requests</h3>
+    {% for request in student.get_pending_requests %}
+    <div class="request">
+        <div class="request-left">
+            {% if request.student1 == student %}
+            <b><a href="{% url 'show_student' request.student2.pk %}">{{request.student2.first_name}} {{request.student2.last_name}}</a></b> wants to trade <b>{{request.section2.course.college}}{{request.section2.course.department}} {{request.section2.course.course_number}} - {{request.section2.section_number}}</b> for <b>{{request.section1.course.college}}{{request.section1.course.department}} {{request.section1.course.course_number}} - {{request.section1.section_number}}</b>
+            {% else %}
+            You sent a request to <b><a href="{% url 'show_student' request.student1.pk %}">{{request.student1.first_name}} {{request.student1.last_name}}</a></b> to trade <b>{{request.section2.course.college}}{{request.section2.course.department}} {{request.section2.course.course_number}} - {{request.section2.section_number}}</b> for <b>{{request.section1.course.college}}{{request.section1.course.department}} {{request.section1.course.course_number}} - {{request.section1.section_number}}</b>
+            {% endif %}
+        </div>
+        <div class="request-right">
+            {% if request.student1 == student %}
+                <a href="mailto:{{request.student2.email_address}}">Respond</a>
+            {% else %}
+             <a href="{% url 'delete_request' request.pk %}">Unsend</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <div style="margin: 20px 10px">
+        <a class="swap" href="{% url 'create_request' student.pk %}">Request Swap</a>
+    </div>
+{% endif %}
+<div class="lists">
+    <div class="enrolled-list">
+        <h3>Enrolled Courses</h3>
+        {% for interest in interests %}
+        {% if interest.interest_type == "E" %}
+            <div class="list-item">
+                {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
+                {% if request.user.is_authenticated and user == student.user%}
+                <form action="{% url 'delete_interest' interest.pk %}" method="post" class="delete-form">
+                    {% csrf_token %}
+                    <input type="submit" value="X">
+                </form>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% endfor %}
+        {% if request.user.is_authenticated and user == student.user%}
+        <a class="list-add" href="{% url 'create_interest' 'E' %}">+ Add Course</a>
+        {% endif %}
+    </div>
+    <div class="wish-list">
+        <h3>Wishlist</h3>
+        {% for interest in interests %}
+        {% if interest.interest_type == "W" %}
+            <div class="list-item">
+                {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
+                {% if request.user.is_authenticated and user == student.user%}
+                <form action="{% url 'delete_interest' interest.pk %}" method="post" class="delete-form">
+                    {% csrf_token %}
+                    <input type="submit" value="X">
+                </form>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% endfor %}
+        {% if request.user.is_authenticated and user == student.user%}
+        <a class="list-add" href="{% url 'create_interest' 'W' %}">+ Add Course</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

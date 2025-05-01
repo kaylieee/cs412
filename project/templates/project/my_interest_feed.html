@@ -1,0 +1,39 @@
+<!-- project/my_interest_feed.html base template page
+     Kaylie Leung kleung28@bu.edu-->
+     {% extends 'project/base.html' %}
+     {% block content %}
+     <h1>My Interests</h1>
+     <div class="search-bar">
+        Search for a course:
+        {% url 'my_interests' as url %}
+        {% include "project/search.html" with action=url %}
+    </div>
+     <div class="interest-feed">
+         {% for interest in interests %}
+         <div class="interest">
+             <div class="interest-top">
+                 {{interest.student.first_name}} {{interest.student.last_name}}:
+             </div>
+             <div class="interest-bottom">
+                 <div class="interest-bottom-left">
+                     {% if interest.interest_type == "E" %}
+                         Wants to trade
+                     {% else %}
+                         Is looking for
+                     {% endif %}
+                     {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
+                 </div>
+                 <div class="interest-bottom-right">
+                     {% if not request.user.is_authenticated %}
+                         <a class="view-profile" href="{% url 'show_student' interest.student.pk %}">View Profile</a>
+                         <a class="swap" href="{% url 'create_request'  interest.student.pk %}">Request Swap</a>
+                     {% elif request.user.is_authenticated and user != interest.student.user %}
+                         <a class="view-profile" href="{% url 'show_student' interest.student.pk %}">View Profile</a>
+                         <a class="swap" href="{% url 'create_request'  interest.student.pk %}">Request Swap</a>
+                     {% endif %}
+                 </div>
+             </div>
+         </div>
+         {% endfor %}
+     </div>
+     {% endblock %}

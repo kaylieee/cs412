@@ -1,0 +1,29 @@
+<!-- project/create_profile_form.html form for creating profiles
+     Kaylie Leung kleung28@bu.edu-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+<h1>Create a new Profile</h1>
+
+<!-- display the HTML form -->
+<form action="{% url 'create_student' %}" method="POST" style="font-size: 16px;">
+    {% csrf_token %}
+    <table>
+        <tr><td>{{user_form.username.label_tag}} {{user_form.username}}</td></tr>
+        <tr><td>{{user_form.username.help_text}}</td></tr>
+    </table>
+    <table>
+        <tr><td>{{user_form.password1.label_tag}} {{user_form.password1}}</td></tr>
+        <tr><td>{{user_form.password1.help_text}}</td></tr>
+    </table>
+    <table>
+        <tr><td>{{user_form.password2.label_tag}} {{user_form.password2}}</td></tr>
+    </table>
+    <table>
+        {{form}}
+    </table>
+        <input type="submit" name="submit" value="Submit">
+</form>
+
+{% endblock %}
