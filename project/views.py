@@ -193,12 +193,13 @@ class ShowMyInterestsView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         qs = super().get_queryset()
 
+        #get wish and enrolled lists for logged in user
         qs = qs.exclude(student__user=self.request.user)
         myWishlist = ClassInterest.objects.filter(interest_type="W", student__user=self.request.user).values_list("section", flat=True)
         myEnrolled = ClassInterest.objects.filter(interest_type="E", student__user=self.request.user).values_list("section", flat=True)
 
         hasMyWishlist = qs.filter(section__in=myWishlist, interest_type="E")
-        hasMyEnrolled = qs.filter(section__in=myEnrolled, interest_type="E")
+        hasMyEnrolled = qs.filter(section__in=myEnrolled, interest_type="W")
 
         qs = hasMyEnrolled|hasMyWishlist
 

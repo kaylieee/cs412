@@ -36,10 +36,3 @@ class CreateStudentForm(forms.ModelForm):
             "last_name": TextInput(),
             "email_address": TextInput(),
         }
-
-class CreateInterestForm(forms.Form):
-    '''A form to add an Interest to the database.'''
-    college = forms.CharField()
-    department = forms.CharField()
-    course_number = forms.CharField()
-    section_number = forms.CharField()

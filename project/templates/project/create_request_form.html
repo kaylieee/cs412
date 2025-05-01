@@ -14,6 +14,7 @@
             <label for="section1">{{student1}}'s Course to Swap:&nbsp;</label>
             <select name="section1" id="section1" required>
                 <option value="" disabled selected></option>
+                <!-- populate dropdown with enrolled list -->
                 {% for interest in student1Interests %}
                     {% if interest.interest_type == "E" %}
                     <option value="{{interest.section.pk}}">
@@ -39,6 +40,7 @@
     </div>
    <div class="lists">
         <div class="wish-list">
+            <!-- populate student wishlist -->
             <span style="margin: 10px; font-weight: 600;">{{student1}}'s Wishlist</span>
             {% for interest in student1Interests %}
                 {% if interest.interest_type == "W" %}

@@ -16,16 +16,20 @@
     const csrfToken = "{{csrf_token}}"
 
     function getSections(){
+        //clear previous results
         document.getElementById("results").innerHTML = ""
+        //get search vals and add to url for get
         const college = document.getElementById("college").value
         const department = document.getElementById("department").value
         const course_number = document.getElementById("course_number").value
         const url = `https://www.bu.edu/phpbin/courses/api/courses/?add_sections=1&semester=2025SPRG&college=${college.toUpperCase()}&department=${department.toUpperCase()}&course_number=${course_number}`
 
+        //fetch response
         const response = fetch(url, {
             method: 'GET',
         }).then(response => response.json()
         ).then(data => {
+            //check if courses exist
             if(!data.courses || data.courses.length == 0){
                 var courseDiv = document.createElement("div")
                 courseDiv.className = "list-item"
@@ -36,6 +40,7 @@
                 courseDiv.innerHTML = "No Courses Found."
                 document.getElementById("results").appendChild(courseDiv)
             } else{
+                //loop through course returned
                 data.courses.forEach(course => {
                 var courseDiv = document.createElement("div")
                 courseDiv.className = "list-item"
@@ -44,6 +49,7 @@
                 courseDiv.style.textAlign = "left"
                 courseDiv.style.alignItems = "flex"
                 courseDiv.innerHTML = `<h3>${course.college}${course.department} ${course.course_num} - ${course.title}</h3>${course.description}`
+                //check if course has sections
                 if(!course.sections || !course.sections['2025SPRG']){
                     var sectionDiv = document.createElement("div")
                     sectionDiv.className = "section"
@@ -55,8 +61,10 @@
                     sectionDiv.style.fontSize = "18px"
                     courseDiv.appendChild(sectionDiv)
                 } else{
+                    //loop through course sections
                     course.sections['2025SPRG'].forEach(section => {
                     var sectionDiv = document.createElement("div")
+                    //make button to add to db using hidden form with vals from request
                     var addCourseButton = `<form method="POST">
                                             <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
                                             <input type="hidden" name="college" value="${course.college}">
