@@ -25,6 +25,7 @@ class ShowAllInterestsView(ListView):
     def get_queryset(self):
         qs = super().get_queryset()
 
+        #filter queryset based on search params if any
         if 'college' in self.request.GET:
             college = self.request.GET['college']
             if college:
@@ -105,6 +106,7 @@ class CreateRequestView(LoginRequiredMixin, CreateView):
 
         context = super().get_context_data(**kwargs)
 
+        #add info on each student and their interests to context
         student1 = Student.objects.get(pk=self.kwargs['other_pk'])
         student2 = Student.objects.get(user=self.request.user)
         student1Interests = ClassInterest.objects.filter(student=student1)
@@ -119,6 +121,8 @@ class CreateRequestView(LoginRequiredMixin, CreateView):
         '''This method handles the form submission and saves the 
         new object to the Django database.
         '''
+
+        #set students based on pk from url and logged in user, student2 is sender
         student1 = Student.objects.get(pk=self.kwargs['other_pk'])
         student2 = Student.objects.get(user=self.request.user)
         form.instance.student1 = student1
@@ -234,6 +238,9 @@ class CreateInterestView(LoginRequiredMixin, View):
     template_name = "project/create_interest_form.html"
     
     def get(self, request, *args, **kwargs):
+        '''
+        Display the form to user.
+        '''
         context = {'type':  self.kwargs.get('type')}
         return render(request, self.template_name, context)
 

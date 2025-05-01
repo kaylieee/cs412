@@ -43,6 +43,7 @@
             <div class="list-item">
                 {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
                 {% if request.user.is_authenticated and user == student.user%}
+                <!-- set action and method to delete without confirmation page -->
                 <form action="{% url 'delete_interest' interest.pk %}" method="post" class="delete-form">
                     {% csrf_token %}
                     <input type="submit" value="X">
@@ -62,6 +63,7 @@
             <div class="list-item">
                 {{interest.section.course.college}}{{interest.section.course.department}} {{interest.section.course.course_number}} - {{interest.section.section_number}}
                 {% if request.user.is_authenticated and user == student.user%}
+                <!-- set action and method to delete without confirmation page -->
                 <form action="{% url 'delete_interest' interest.pk %}" method="post" class="delete-form">
                     {% csrf_token %}
                     <input type="submit" value="X">
